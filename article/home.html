@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTU PH</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header {
+            min-height: 100vh;
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url('media/background.jpg');
+            background-position: center;
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: none;
+        }
+
+        .header-text {
+            text-align: center;
+            margin-top: 20%;
+        }
+
+        .header-text h1 {
+            font-size: 3rem;
+        }
+
+        .header-text p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2% 6%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        nav img {
+            width: 100px;
+        }
+
+        .nav-links ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .article-content {
+            padding: 4% 10%;
+            color: #333;
+            font-family: Arial, sans-serif;
+            display: none; 
+        }
+
+        .article-content .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #004085;
+        }
+
+        .article-content .author {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .article-content p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .article-content .article-img {
+            width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+    
+        .login-form, .register-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #222; 
+            color: white; 
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: none; 
+        }
+
+        .login-form h2, .register-form h2 {
+            margin-bottom: 20px;
+        }
+
+        .login-form input, .register-form input {
+            width: 60%; 
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #333; 
+            color: white; 
+        }
+
+        .login-form input::placeholder, .register-form input::placeholder {
+            color: #aaa; 
+        }
+
+        .login-form button, .register-form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #004085;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-form button:hover, .register-form button:hover {
+            background-color: #003060;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <div class="login-form" id="loginForm">
+        <h2>Login</h2>
+        <input type="text" id="loginUsername" placeholder="Username" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button onclick="handleLogin()">Login</button>
+        <p>Don't have an account? <a href="javascript:void(0);" onclick="showRegister()" style="color: #aaa;">Register</a></p>
+    </div>
+
+    
+    <div class="register-form" id="registerForm">
+        <h2>Register</h2>
+        <input type="text" id="registerUsername" placeholder="Username" required>
+        <input type="password" id="registerPassword" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        <button onclick="handleRegister()">Register</button>
+        <p>Already have an account? <a href="javascript:void(0);" onclick="showLogin()" style="color: #aaa;">Login</a></p>
+    </div>
+
+    <section class="header" id="headerSection"> 
+        <nav>
+            <a href="javascript:void(0);"><img src="image/Logo.png" alt="Logo"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="javascript:void(0);" onclick="showHome()">HOME</a></li>
+                    <li><a href="javascript:void(0);" onclick="showAbout()">ABOUT</a></li>
+                    <li><a href="javascript:void(0);" onclick="showArticle()">ARTICLE</a></li>
+                    <li><a href="javascript:void(0);" onclick="showContact()">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="header-text">
+            <h1>Welcome to Cebu Technological University News</h1>
+            <p>The latest news in CTU is here for you to view.</p>
+        </div>
+    </section>
+
+    <section class="article-content" id="article">
+        <div class="container">
+            <!-- Article 1 -->
+            <h1>DOTA 2</h1>
+            <p class="date">Release on July 9, 2013.</p>
+            <img src="image/dota2.webp" alt="Article Image" class="article-img">
+            <p>
+                Dota 2 is a 2013 multiplayer online battle 
+                arena (MOBA) video game by Valve. The game is a sequel to Defense of the Ancients (DotA), a community-created mod for Blizzard Entertainment's Warcraft III: Reign of Chaos.
+            </p>
+            <!-- Additional Articles ... -->
+             <h1>Crossfire</h1>
+             <p class="date">Release on September 17, 2009</p>
+             <img src="image/crossfire.png" alt="Article image" class="article-img">
+             <p>Crossfire is a series of video games that are mainly tactical first-person shooter games. The series was created by Smilegate and debuted on Microsoft Windows; 
+                it has expanded to other genres and platforms. The series is mainly known for its search-and-destroy/defuse objective-based modes.</p>
+
+            <h1>Mobile Legend</h1>
+            <p class="date">Release on July 14,2016 </p>
+            <img src="image/mobile.legend.jpg" alt="Article Image" class="article-img">
+            <p>Mobile Legends: Bang Bang is a multiplayer online battle arena (MOBA) game designed for mobile phones. The game is free-to-play and is only monetized through 
+                in-game purchases like characters and skins. Each player can control a selectable character, called a Hero, with unique abilities and traits. 
+                There are six roles that define the main purpose of heroes: Tank, Marksman, Assassin, Fighter, Mage, and Support. These roles determine the responsibilities of players 
+                for their respective teams. Players can also set specific builds for heroes which include in-game items and emblems.</p>
+
+        </div>
+    </section>
+    <script>
+        let users = [];
+        document.getElementById('loginForm').style.display = 'flex';
+
+        function handleLogin() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const user = users.find(u => u.username === username && u.password === password);
+            if (user) {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('headerSection').style.display = 'block';
+                document.querySelector('.article-content').style.display = 'block';
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+
+        function handleRegister() {
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            
+            if (users.find(u => u.username === username)) {
+                alert('Username already taken!');
+                return;
+            }
+
+           
+            users.push({ username, password });
+            alert('Registration successful! Please log in.');
+            showLogin();
+        }
+
+        function showRegister() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'flex';
+        }
+
+        function showLogin() {
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'flex';
+        }
+
+        function showArticle() {
+            document.querySelector('.header').style.display = 'none';
+            document.querySelector('.article-content').style.display = 'block';
+        }
+
+        function showHome() {
+            location.reload(); 
+        }
+
+        function showAbout() {
+            alert('About page content goes here.'); 
+        }
+
+        function showContact() {
+            alert('Contact page content goes here.');
+        }
+    </script>
+</body>
+</html>
